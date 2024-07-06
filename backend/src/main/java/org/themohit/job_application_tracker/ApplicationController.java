@@ -40,4 +40,9 @@ public class ApplicationController {
         service.deleteApplication(id);
         return "deleted "+id;
     }
+
+    @GetMapping("/application/search/{keyword}")
+    public List<JobApplication> searchApplication(@PathVariable("keyword") String key){
+        return service.searchJob(key);
+    }
 }

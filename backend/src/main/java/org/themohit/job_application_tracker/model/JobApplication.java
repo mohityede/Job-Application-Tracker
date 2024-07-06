@@ -1,5 +1,7 @@
 package org.themohit.job_application_tracker.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,15 +10,17 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
 @Component
+@Entity
 public class JobApplication {
+    @Id
     private int jobId;
     private String jobPosition;
     private String jobDesc;
     private String company;
     private List<String> applicationStatus;
+
+    public JobApplication(){}
 
     public JobApplication(int jobId, String jobPosition, String jobDesc, String company, List<String> applicationStatus) {
         this.jobId = jobId;

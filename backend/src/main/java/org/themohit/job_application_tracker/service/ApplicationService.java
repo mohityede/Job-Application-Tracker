@@ -10,25 +10,29 @@ import java.util.List;
 @Service
 public class ApplicationService {
     @Autowired
-    private ApplicationRepo repo=new ApplicationRepo();
+    private ApplicationRepo repo;
 
     public List<JobApplication> getAllApplications(){
-        return repo.getAllApplications();
+        return repo.findAll();
     }
 
     public void addJob(JobApplication app){
-        repo.addApplication(app);
+        repo.save(app);
     }
 
     public JobApplication getApplication(int id) {
-        return repo.getApplicationById(id);
+        return repo.findById(id).orElse(new JobApplication());
     }
 
     public void updateApplication(JobApplication job) {
-        repo.updateApplication(job);
+        repo.save(job);
     }
 
     public void deleteApplication(int id) {
-        repo.deleteApplicationById(id);
+        repo.deleteById(id);
+    }
+
+    public List<JobApplication> searchJob(String key) {
+        return repo.findByCompanyContainingOrJobDescContaining(key,key);
     }
 }
